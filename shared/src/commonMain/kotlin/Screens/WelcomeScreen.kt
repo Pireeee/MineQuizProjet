@@ -11,10 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import moe.tlaster.precompose.navigation.Navigator
 
 
 @Composable
-internal fun welcomeScreen(){
+internal fun welcomeScreen(navigator: Navigator) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth().fillMaxHeight()
