@@ -19,37 +19,42 @@ import androidx.compose.ui.unit.sp
 import moe.tlaster.precompose.navigation.Navigator
 
 
-@Composable
+@Composable()
 internal fun scoreScreen(navigator: Navigator, score: String){
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth().fillMaxHeight()
-    ){
-        Card (
+    ) {
+        Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(10.dp),
-            backgroundColor = Color.Green)
-        {
-            Column(horizontalAlignment = Alignment.CenterHorizontally){
-                Text(
-                    fontSize = 15.sp,
-                    text = "score",
-                )
+            backgroundColor = Color.Green
 
-                Text(
-                    fontSize = 30.sp,
-                    text = score,
-                )
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
 
-                Button(
-                    modifier = Modifier.padding(all = 20.dp),
-                    onClick = { /*TODO*/ })
-                {
-                    Icon(Icons.Filled.Refresh, contentDescription = "Localized description")
-                    Text("Restart Quiz")
-                }
+                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
+                        Text(
+                            fontSize = 15.sp,
+                            text = "score",
+                        )
+                        Text(
+                            fontSize = 30.sp,
+                            text = score,
+                        )
+                        Button(
+                            modifier = Modifier.padding(all = 20.dp),
+                            onClick = {
+                                navigator.navigate(route = "/quiz")
+                            }
+                        ) {
+                            Icon(Icons.Filled.Refresh, contentDescription = "Localized description")
+                            Text(text = "Retake the Quiz",)
+
+                        }
+                    }
             }
         }
     }

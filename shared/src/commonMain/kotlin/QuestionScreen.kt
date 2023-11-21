@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults.textButtonColors
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
@@ -24,43 +23,33 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import moe.tlaster.precompose.navigation.Navigator
+import network.data.Question
 
-@Composable
-internal fun questionScreen(navigator: Navigator, questions: List<Question>){
+@Composable()
+internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
+
     var questionProgress by remember { mutableStateOf(0) }
     var selectedAnswer by remember { mutableStateOf(1) }
     var score by remember { mutableStateOf(0) }
-    Card(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-        backgroundColor = Color.Transparent
-    )
-    {
-        Row(horizontalArrangement = Arrangement.End){
-            Text(text="Score = ", modifier = Modifier.padding(all = 10.dp), fontSize = 25.sp, textAlign = TextAlign.End)
-            Text(text=score.toString(), modifier = Modifier.padding(all = 10.dp), fontSize = 25.sp, textAlign = TextAlign.End)
-        }
-    }
-    Column (
+
+    Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Card(
             shape = RoundedCornerShape(5.dp),
-            modifier = Modifier.padding(60.dp),
-            backgroundColor = Color.LightGray
-        )
-        {
-            Column (
+            modifier = Modifier.padding(60.dp)
+        ) {
+            Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(horizontal = 10.dp)
-            ){
+            ) {
                 Text(
                     modifier = Modifier.padding(all = 10.dp),
                     text = questions[questionProgress].label,
@@ -86,10 +75,6 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>){
         }
         Column(modifier = Modifier.fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
             Button(
-                colors= textButtonColors(
-                    backgroundColor = Color.Blue
-                ),
-
                 modifier = Modifier.padding(bottom = 20.dp),
                 onClick = {
                     if(selectedAnswer == questions[questionProgress].correctAnswerId) {
@@ -100,15 +85,14 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>){
                         selectedAnswer = 1
                     }else{
                         // Go to the score section
+                        navigator.navigate("/score/$score out of ${questions.size}")
                     }
                 }
             ) {
                 if(questionProgress < questions.size - 1) nextOrDoneButton(Icons.Filled.ArrowForward,"Next")
                 else nextOrDoneButton(Icons.Filled.Done,"Done")
             }
-            LinearProgressIndicator(
-                modifier = Modifier.fillMaxWidth().height(20.dp),
-                progress = questionProgress.div(questions.size.toFloat()).plus(1.div(questions.size.toFloat())))
+            LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), progress = questionProgress.div(questions.size.toFloat()).plus(1.div(questions.size.toFloat())))
         }
     }
 }
@@ -120,5 +104,5 @@ internal fun nextOrDoneButton(iv: ImageVector, label:String){
         contentDescription = "Localized description",
         Modifier.padding(end = 15.dp)
     )
-    Text(text = label, color = Color.White)
+    Text(label)
 }

@@ -1,11 +1,8 @@
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,8 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import network.QuizRepository
+import network.data.Answer
+import network.data.Question
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -26,14 +24,11 @@ private val repository = QuizRepository()
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun App() {
-    MaterialTheme (){
-        val questions = repository.questionState.collectAsState()
 
-        if(questions.value.isNotEmpty()) {
-           // questionScreen(questions.value)
-        }
-        /*
-        var questions = listOf(
+    MaterialTheme {
+
+        //scoreScreen("10/10")
+        /*var questions = listOf(
             Question(
                 1,
                 "Android is a great platform ?",
@@ -42,25 +37,37 @@ fun App() {
             ),
             Question(
                 1,
-                "On mange quoi ce midi ?",
-                1,
-                listOf(Answer(1, "Kfc"), Answer(2, "Subway"), Answer(3, "McDo"))
+                "Android is a bad platform ?",
+                2,
+                listOf(Answer(1, "YES"), Answer(2, "NO"))
             )
-        )
-        */
-        /*
-        Box(
-            modifier = Modifier.fillMaxHeight().fillMaxWidth(),
-        ) {
-            Image(
-                painter = painterResource("Background.png"),
-                contentDescription = "Quiz App",
-                modifier = Modifier.fillMaxWidth()
-            )
+        )*/
+
+        rootNavHost()
+
+        /*val questions = repository.questionState.collectAsState()
+
+        if(questions.value.isNotEmpty()) {
+            questionScreen(questions.value)
         }*/
-        craftScreen()
+
+
+        /*var greetingText by remember { mutableStateOf("Hello, World!") }
+        var showImage by remember { mutableStateOf(false) }
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+            Button(onClick = {
+                greetingText = "Hello, ${getPlatformName()}"
+                showImage = !showImage
+            }) {
+                Text(greetingText)
+            }
+            AnimatedVisibility(showImage) {
+                Image(
+                    painterResource("compose-multiplatform.xml"),
+                    contentDescription = "Compose Multiplatform icon"
+                )
+            }*/
+        }
     }
-}
 
 expect fun getPlatformName(): String
-
