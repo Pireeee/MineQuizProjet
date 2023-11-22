@@ -1,0 +1,165 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "label": "What material is needed to craft a crafting table?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Wooden Planks"},
+        {"id": 2, "label": "Cobblestone"},
+        {"id": 3, "label": "Wooden Planks"},
+        {"id": 4, "label": "Iron Ingots"}
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Which dimension is known for its fiery landscape and dangerous creatures?",
+      "correct_answer_id": 2,
+      "answers": [
+        {"id": 1, "label": "The End"},
+        {"id": 2, "label": "The Nether"},
+        {"id": 3, "label": "The Overworld"},
+        {"id": 4, "label": "The Aether"}
+      ]
+    },
+    {
+      "id": 3,
+      "label": "What is the primary use of Redstone dust in Minecraft?",
+      "correct_answer_id": 1,
+      "answers": [
+        {"id": 1, "label": "Powering mechanisms and creating circuits"},
+        {"id": 2, "label": "Crafting weapons and armor"},
+        {"id": 3, "label": "Building structures"},
+        {"id": 4, "label": "Enchanting items"}
+      ]
+    },
+    {
+      "id": 4,
+      "label": "Which mob is known for exploding when it gets close to the player?",
+      "correct_answer_id": 4,
+      "answers": [
+        {"id": 1, "label": "Creeper"},
+        {"id": 2, "label": "Zombie"},
+        {"id": 3, "label": "Skeleton"},
+        {"id": 4, "label": "TNT"}
+      ]
+    },
+    {
+      "id": 5,
+      "label": "What is the name of the block that allows players to sleep and set their spawn point?",
+      "correct_answer_id": 2,
+      "answers": [
+        {"id": 1, "label": "Crafting Table"},
+        {"id": 2, "label": "Bed"},
+        {"id": 3, "label": "Chest"},
+        {"id": 4, "label": "Furnace"}
+      ]
+    },
+    {
+      "id": 6,
+      "label": "Which biome is characterized by its icy terrain and snow-covered landscape?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Desert"},
+        {"id": 2, "label": "Swamp"},
+        {"id": 3, "label": "Taiga"},
+        {"id": 4, "label": "Jungle"}
+      ]
+    },
+    {
+      "id": 7,
+      "label": "What is required to create a map in Minecraft?",
+      "correct_answer_id": 4,
+      "answers": [
+        {"id": 1, "label": "Iron Ingots"},
+        {"id": 2, "label": "Diamonds"},
+        {"id": 3, "label": "Redstone Dust"},
+        {"id": 4, "label": "Paper and Compass"}
+      ]
+    },
+    {
+      "id": 8,
+      "label": "Which tool is specifically designed for mining ores and blocks faster?",
+      "correct_answer_id": 1,
+      "answers": [
+        {"id": 1, "label": "Pickaxe"},
+        {"id": 2, "label": "Axe"},
+        {"id": 3, "label": "Shovel"},
+        {"id": 4, "label": "Sword"}
+      ]
+    },
+    {
+      "id": 9,
+      "label": "What is the main ingredient needed to brew a potion of strength?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Blaze Powder"},
+        {"id": 2, "label": "Fermented Spider Eye"},
+        {"id": 3, "label": "Blaze Rod"},
+        {"id": 4, "label": "Nether Wart"}
+      ]
+    },
+    {
+      "id": 10,
+      "label": "Which block is used to create a Nether Portal?",
+      "correct_answer_id": 2,
+      "answers": [
+        {"id": 1, "label": "End Portal Frame"},
+        {"id": 2, "label": "Obsidian"},
+        {"id": 3, "label": "Stone Bricks"},
+        {"id": 4, "label": "Nether Bricks"}
+      ]
+    },
+    {
+      "id": 11,
+      "label": "What is the purpose of a Beacon in Minecraft?",
+      "correct_answer_id": 1,
+      "answers": [
+        {"id": 1, "label": "Granting special powers and effects to nearby players"},
+        {"id": 2, "label": "Providing light"},
+        {"id": 3, "label": "Summoning mobs"},
+        {"id": 4, "label": "Teleporting players"}
+      ]
+    },
+    {
+      "id": 12,
+      "label": "Which dimension is home to the Ender Dragon?",
+      "correct_answer_id": 4,
+      "answers": [
+        {"id": 1, "label": "The Nether"},
+        {"id": 2, "label": "The End"},
+        {"id": 3, "label": "The Overworld"},
+        {"id": 4, "label": "The End"}
+      ]
+    },
+    {
+      "id": 13,
+      "label": "What is the primary use of the Loom block?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Enchanting items"},
+        {"id": 2, "label": "Crafting weapons"},
+        {"id": 3, "label": "Creating banners"},
+        {"id": 4, "label": "Smelting ores"}
+      ]
+    },
+    {
+      "id": 14,
+      "label": "Which hostile mob can be found in the desert and drops a useful item for brewing?",
+      "correct_answer_id": 1,
+      "answers": [
+        {"id": 1, "label": "Husk"},
+        {"id": 2, "label": "Zombie"},
+        {"id": 3, "label": "Skeleton"},
+        {"id": 4, "label": "Creeper"}
+      ]
+    },
+    {
+      "id": 15,
+      "label": "What is the name of the rare, powerful underwater boss in Minecraft?",
+      "correct_answer_id": 2,
+      "answers": [
+        {"id": 1, "label": "Guardian"},
+      ]
+    }
+}
