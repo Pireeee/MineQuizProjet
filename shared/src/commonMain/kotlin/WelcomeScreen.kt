@@ -1,3 +1,4 @@
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -13,10 +14,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import moe.tlaster.precompose.navigation.Navigator
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable()
 internal fun welcomeScreen(navigator: Navigator) {
 
+    Box(
+        modifier = Modifier.fillMaxHeight().fillMaxWidth(),
+    ) {
+        Image(
+            painter = painterResource("Background.png"),
+            contentDescription = "Quiz App",
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth().fillMaxHeight()

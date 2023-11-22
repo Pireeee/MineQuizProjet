@@ -37,6 +37,8 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
     var selectedAnswer by remember { mutableStateOf(1) }
     var score by remember { mutableStateOf(0) }
 
+    scoreBox(score)
+
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(),
         verticalArrangement = Arrangement.Center,
