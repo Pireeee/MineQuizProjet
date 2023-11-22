@@ -5,7 +5,7 @@
       "label": "What material is needed to craft a crafting table?",
       "correct_answer_id": 3,
       "answers": [
-        {"id": 1, "label": "Wooden Planks"},
+        {"id": 1, "label": "Wooden logs"},
         {"id": 2, "label": "Cobblestone"},
         {"id": 3, "label": "Wooden Planks"},
         {"id": 4, "label": "Iron Ingots"}
@@ -36,12 +36,12 @@
     {
       "id": 4,
       "label": "Which mob is known for exploding when it gets close to the player?",
-      "correct_answer_id": 4,
+      "correct_answer_id": 1,
       "answers": [
         {"id": 1, "label": "Creeper"},
         {"id": 2, "label": "Zombie"},
         {"id": 3, "label": "Skeleton"},
-        {"id": 4, "label": "TNT"}
+        {"id": 4, "label": "Spider"}
       ]
     },
     {
@@ -91,7 +91,7 @@
     {
       "id": 9,
       "label": "What is the main ingredient needed to brew a potion of strength?",
-      "correct_answer_id": 3,
+      "correct_answer_id": 1,
       "answers": [
         {"id": 1, "label": "Blaze Powder"},
         {"id": 2, "label": "Fermented Spider Eye"},
