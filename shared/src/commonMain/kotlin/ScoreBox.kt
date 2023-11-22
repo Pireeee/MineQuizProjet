@@ -11,6 +11,8 @@ internal fun scoreBox(score: Int) {
         contentAlignment = Alignment.TopEnd,
         modifier = androidx.compose.ui.Modifier.fillMaxWidth().fillMaxHeight()
     ) {
-        Text(text = "Score: $score")
+        Text(
+            text = "Score: $score"
+        )
     }
 }

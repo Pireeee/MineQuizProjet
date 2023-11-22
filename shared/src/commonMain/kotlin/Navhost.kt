@@ -42,5 +42,13 @@ internal fun rootNavHost() {
                 scoreScreen(navigator, score)
             }
         }
+        scene(
+            route = "/craft/{score}",
+            navTransition = NavTransition(),
+        ) { backStackEntry ->
+            backStackEntry.path<String>("score")?.let { score ->
+                craftScreen(navigator,score.toInt())
+            }
+        }
     }
 }
