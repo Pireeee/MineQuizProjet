@@ -32,12 +32,7 @@ internal fun welcomeScreen(navigator: Navigator) {
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth().fillMaxHeight()
     ) {
-        Image(
-            painter = painterResource("Background.png"),
-            contentDescription = "Quiz App",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
-        )
+        background("Background.png")
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(10.dp),

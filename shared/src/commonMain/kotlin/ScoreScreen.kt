@@ -25,6 +25,7 @@ internal fun scoreScreen(navigator: Navigator, score: String){
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxWidth().fillMaxHeight()
     ) {
+        background("Background.png")
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(10.dp),
