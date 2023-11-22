@@ -160,6 +160,66 @@
       "correct_answer_id": 2,
       "answers": [
         {"id": 1, "label": "Guardian"},
+        {"id": 2, "label": "Elder Guardian"},
+        {"id": 3, "label": "Drowned"},
+        {"id": 4, "label": "Squid"}
+      ]
+    },
+    {
+      "id": 16,
+      "label": "Which tool is most effective for breaking blocks of obsidian?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Shovel"},
+        {"id": 2, "label": "Sword"},
+        {"id": 3, "label": "Diamond or Netherite Pickaxe"},
+        {"id": 4, "label": "Axe"}
+      ]
+    },
+    {
+      "id": 17,
+      "label": "What is the primary purpose of a Composter in Minecraft?",
+      "correct_answer_id": 2,
+      "answers": [
+        {"id": 1, "label": "Crafting"},
+        {"id": 2, "label": "Composting organic materials into bone meal"},
+        {"id": 3, "label": "Farming crops"},
+        {"id": 4, "label": "Brewing potions"}
+      ]
+    },
+    {
+      "id": 18,
+      "label": "Which biome is known for its towering, giant mushrooms?",
+      "correct_answer_id": 4,
+      "answers": [
+        {"id": 1, "label": "Taiga"},
+        {"id": 2, "label": "Jungle"},
+        {"id": 3, "label": "Desert"},
+        {"id": 4, "label": "Mushroom Fields"}
+      ]
+    },
+    {
+      "id": 19,
+      "label": "What is the maximum height a player can build up to in Minecraft?",
+      "correct_answer_id": 1,
+      "answers": [
+        {"id": 1, "label": "Build height limit varies by platform, typically 320 or 384 blocks"},
+        {"id": 2, "label": "256 blocks"},
+        {"id": 3, "label": "128 blocks"},
+        {"id": 4, "label": "512 blocks"}
+      ]
+    },
+    {
+      "id": 20,
+      "label": "Which Minecraft mob drops blaze rods upon defeat?",
+      "correct_answer_id": 3,
+      "answers": [
+        {"id": 1, "label": "Enderman"},
+        {"id": 2, "label": "Blaze"},
+        {"id": 3, "label": "Blaze"},
+        {"id": 4, "label": "Witch"}
       ]
     }
+  ]
 }
+
