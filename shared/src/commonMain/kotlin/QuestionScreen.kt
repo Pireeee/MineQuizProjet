@@ -17,16 +17,20 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import moe.tlaster.precompose.navigation.Navigator
 import network.data.Question
 
@@ -36,8 +40,21 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
     var questionProgress by remember { mutableStateOf(0) }
     var selectedAnswer by remember { mutableStateOf(1) }
     var score by remember { mutableStateOf(0) }
-
+    var elapsedTime by remember { mutableStateOf(0) }
+    var startTime = questions.size*10
+    var remainingTime by remember { mutableStateOf(startTime) }
+    var bonus = 0;
+    var totalScore = score;
     scoreBox(score)
+    LaunchedEffect(true) {
+        launch {
+            while (true) {
+                delay(1000)
+                elapsedTime++
+                remainingTime--
+            }
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxWidth().fillMaxHeight(),
@@ -58,6 +75,9 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                     fontSize = 25.sp,
                     textAlign = TextAlign.Center
                 )
+                Text(text = "Time : $elapsedTime seconds")
+                Text(text = "Time remaining : $remainingTime seconds")
+                LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), color = Color.Green,progress=elapsedTime.div(startTime.toFloat()).plus(1.div(startTime.toFloat())))
             }
         }
         Column(modifier = Modifier.selectableGroup()) {
@@ -79,6 +99,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             Button(
                 modifier = Modifier.padding(bottom = 20.dp),
                 onClick = {
+
                     if(selectedAnswer == questions[questionProgress].correctAnswerId) {
                         score++
                     }
@@ -87,7 +108,18 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                         selectedAnswer = 1
                     }else{
                         // Go to the score section
-                        navigator.navigate("/score/$score out of ${questions.size}")
+                        if(remainingTime > startTime/1.5){
+                            bonus = 2
+                            totalScore = score + bonus
+                        }else if(remainingTime > startTime/2){
+                            bonus++
+                            totalScore += bonus
+                        }
+
+                        navigator.navigate("/score/$score out of ${questions.size} \n" +
+                                "Time : $elapsedTime \n" +
+                                "Bonus added to your score : $bonus \n" +
+                                "Total score : $totalScore")
                     }
                 }
             ) {
