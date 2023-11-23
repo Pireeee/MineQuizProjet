@@ -94,6 +94,9 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
 
     Box {
         background("Background.png")
+
+        scoreBox(score)
+
         Column(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
@@ -238,7 +241,8 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                     else nextOrDoneButton(Icons.Filled.Done, "Done")
                 }
                 LinearProgressIndicator(
-                    modifier = Modifier.fillMaxWidth().height(20.dp),
+                    modifier = Modifier.fillMaxWidth().height(20.dp).background(color = Color(0xfff477a1e)),
+                    color = Color(0xFff8fca5c),
                     progress = questionProgress.div(questions.size.toFloat())
                         .plus(1.div(questions.size.toFloat()))
                 )

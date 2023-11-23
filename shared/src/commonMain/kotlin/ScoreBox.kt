@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 @Composable
 internal fun scoreBox(score: Int) {
     Box(
-        contentAlignment = Alignment.TopEnd,
+        contentAlignment = Alignment.TopCenter,
         modifier = androidx.compose.ui.Modifier.fillMaxWidth().fillMaxHeight()
     ) {
         Text(text = "Score: $score")
