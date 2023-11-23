@@ -5,13 +5,17 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
+import androidx.compose.material.Slider
+import androidx.compose.material.SliderDefaults
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -19,6 +23,7 @@ import androidx.compose.material.icons.filled.Done
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -33,6 +38,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.navigation.Navigator
 import network.data.Question
+import kotlin.math.roundToInt
 
 @Composable()
 internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
@@ -81,20 +87,48 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             }
         }
         Column(modifier = Modifier.selectableGroup()) {
-            questions[questionProgress].answers.forEach { answer ->
-                Row(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    RadioButton(
-                        modifier = Modifier.padding(end = 16.dp),
-                        selected = (selectedAnswer == answer.id),
-                        onClick = { selectedAnswer = answer.id },
-                    )
-                    Text(text = answer.label)
+            if(questionProgress != 2){
+                questions[questionProgress].answers.forEach { answer ->
+                    Row(
+                        modifier = Modifier.padding(horizontal = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        RadioButton(
+                            modifier = Modifier.padding(end = 16.dp),
+                            selected = (selectedAnswer == answer.id),
+                            onClick = { selectedAnswer = answer.id },
+                        )
+                        Text(text = answer.label)
+
+                    }
                 }
             }
+            else{
+                Row(
+
+                    modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ){
+                    Text(text = selectedAnswer.toString())
+
+                    Slider(
+                        value = selectedAnswer.toFloat(),
+                        onValueChange = { selectedAnswer = it.roundToInt() },
+                        colors = SliderDefaults.colors(
+                            thumbColor = Color(0xff70b237),
+                            activeTrackColor = Color(0xff854f2b),
+                            inactiveTrackColor = Color(0xff8fca5c),
+                        ),
+                        steps = 3,
+                        valueRange = 0f..4f
+                    )
+                }
+
+            }
+
         }
+    }
+
         Column(modifier = Modifier.fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
             Button(
                 modifier = Modifier.padding(bottom = 20.dp),
@@ -129,7 +163,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), progress = questionProgress.div(questions.size.toFloat()).plus(1.div(questions.size.toFloat())))
         }
     }
-}
+
 
 @Composable
 internal fun nextOrDoneButton(iv: ImageVector, label:String){
@@ -140,3 +174,4 @@ internal fun nextOrDoneButton(iv: ImageVector, label:String){
     )
     Text(label)
 }
+

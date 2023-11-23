@@ -17,8 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import moe.tlaster.precompose.navigation.Navigator
-
-
 @Composable()
 internal fun scoreScreen(navigator: Navigator, score: String){
     Box(
