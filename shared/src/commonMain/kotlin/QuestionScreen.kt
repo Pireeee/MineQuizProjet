@@ -122,8 +122,8 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                             activeTrackColor = Color(0xff854f2b),
                             inactiveTrackColor = Color(0xff8fca5c),
                         ),
-                        steps = 3,
-                        valueRange = 0f..4f
+                        steps = 2,
+                        valueRange = 1f..4f
                     )
                 }
 
