@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -37,8 +39,14 @@ internal fun welcomeScreen(navigator: Navigator) {
         background("Background.png")
         Card(
             shape = RoundedCornerShape(8.dp),
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(10.dp).size(200.dp),
         ) {
+            Image(
+                painter = painterResource("wall.png"),
+                contentDescription = "logo",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+            )
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -53,7 +61,13 @@ internal fun welcomeScreen(navigator: Navigator) {
                             text = "A simple Quiz to discovers KMP and compose.",
                         )
                         Button(
-                            modifier = Modifier.padding(all = 10.dp),
+                            modifier = Modifier.padding(bottom = 20.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                Color(0xff70b237),
+                                Color(0xff854f2b),
+                                Color(0xff8fca5c),
+                                Color(0xff854f2b)
+                            ),
                             onClick = { navigator.navigate(route = "/quiz") }
 
                         ) {

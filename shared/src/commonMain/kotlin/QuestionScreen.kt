@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -61,11 +62,11 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
     var selectedAnswer by remember { mutableStateOf(1) }
     var score by remember { mutableStateOf(0) }
     var elapsedTime by remember { mutableStateOf(0) }
-    var startTime = questions.size*10
+    var startTime = questions.size * 10
     var remainingTime by remember { mutableStateOf(startTime) }
     var bonus = 0;
     var totalScore = score;
-    var colorProgress by remember{ mutableStateOf(0xFff8fca5c)};
+    var colorProgress by remember { mutableStateOf(0xFff8fca5c) };
     scoreBox(score)
     LaunchedEffect(true) {
         launch {
@@ -73,23 +74,25 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 delay(1000)
                 elapsedTime++
                 remainingTime--
-                if(remainingTime > startTime/1.5){
+                if (remainingTime > startTime / 1.5) {
                     colorProgress = 0xFff8fca5c;
-                }else if(remainingTime > startTime/2){
+                } else if (remainingTime > startTime / 2) {
                     colorProgress = 0xFffffd100;
-                }else if(remainingTime > 0){
+                } else if (remainingTime > 0) {
                     colorProgress = 0xFffff0800;
-                }else{
-                    navigator.navigate("/score/$score out of ${questions.size} \n" +
-                            "Time : $elapsedTime \n" +
-                            "Bonus added to your score : $bonus \n" +
-                            "Total score : $totalScore")
+                } else {
+                    navigator.navigate(
+                        "/score/$score out of ${questions.size} \n" +
+                                "Time : $elapsedTime \n" +
+                                "Bonus added to your score : $bonus \n" +
+                                "Total score : $totalScore"
+                    )
                 }
             }
         }
     }
 
-    Box{
+    Box {
         background("Background.png")
         Column(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
@@ -102,7 +105,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth().height(110.dp),
-                ){
+                ) {
 
                     Image(
                         painter = painterResource("wall.png"),
@@ -120,7 +123,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
 
                         text = questions[questionProgress].label,
                         fontSize = 25.sp,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                     Text(text = "Time : $elapsedTime seconds")
                     Text(text = "Time remaining : $remainingTime seconds")
@@ -137,12 +140,20 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             }
             Card(
                 shape = RoundedCornerShape(5.dp),
+                modifier = Modifier.size(300.dp, 200.dp),
+                backgroundColor = Color(0xfffc28340)
             ) {
-                Column(modifier = Modifier.selectableGroup()) {
-                    if (questionProgress != 2) {
+                if (questionProgress != 2) {
+                    Image(
+                        painter = painterResource("wall.png"),
+                        contentDescription = "logo",
+                        contentScale = ContentScale.Crop,
+                    )
+                    Column(modifier = Modifier.selectableGroup()) {
+
                         questions[questionProgress].answers.forEach { answer ->
                             Row(
-                                modifier = Modifier.padding(horizontal = 16.dp),
+                                modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 RadioButton(
@@ -154,14 +165,15 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
 
                             }
                         }
-                    } else {
+                    }
+                } else {
+                    Column(modifier = Modifier.selectableGroup(),
+                        horizontalAlignment = Alignment.CenterHorizontally,) {
                         Row(
-
                             modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(text = selectedAnswer.toString())
-
                             Slider(
                                 value = selectedAnswer.toFloat(),
                                 onValueChange = { selectedAnswer = it.roundToInt() },
@@ -176,6 +188,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                         }
                     }
                 }
+
             }
 
             Column(
