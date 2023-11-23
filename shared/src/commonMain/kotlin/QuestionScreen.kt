@@ -1,9 +1,11 @@
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -38,6 +40,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,8 +49,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.navigation.Navigator
 import network.data.Question
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable()
 internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
 
@@ -94,12 +100,24 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 shape = RoundedCornerShape(5.dp),
                 modifier = Modifier.padding(60.dp)
             ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth().height(110.dp),
+                ){
+
+                    Image(
+                        painter = painterResource("wall.png"),
+                        contentDescription = "logo",
+                        contentScale = ContentScale.FillWidth,
+                        modifier = Modifier.fillMaxSize()
+                    )
+
+                }
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 ) {
                     Text(
-                        modifier = Modifier.padding(all = 10.dp),
+
                         text = questions[questionProgress].label,
                         fontSize = 25.sp,
                         textAlign = TextAlign.Center
