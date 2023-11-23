@@ -1,5 +1,6 @@
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -149,10 +150,12 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 if (questionProgress != 2) {
 
                     Column(modifier = Modifier.selectableGroup()) {
-
                         questions[questionProgress].answers.forEach { answer ->
                             Row(
-                                modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp)
+                                    .fillMaxWidth()
+                                    .clickable { selectedAnswer = answer.id },
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 RadioButton(
@@ -161,10 +164,11 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                                     onClick = { selectedAnswer = answer.id },
                                 )
                                 Text(text = answer.label)
-
                             }
                         }
                     }
+                    var toto = "hello"
+                    toto = "hello2"
                 } else {
                     Column(modifier = Modifier.selectableGroup(),
                         horizontalAlignment = Alignment.CenterHorizontally,) {
