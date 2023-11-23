@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonColors
+import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
@@ -145,11 +147,16 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 }
             }
         }
-    }
+
 
         Column(modifier = Modifier.fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
             Button(
                 modifier = Modifier.padding(bottom = 20.dp),
+                colors = buttonColors(
+                    Color(0xff70b237),
+                    Color(0xff854f2b),
+                    Color(0xff8fca5c),
+                    Color(0xff854f2b)),
                 onClick = {
 
                     if(selectedAnswer == questions[questionProgress].correctAnswerId) {
@@ -181,6 +188,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), progress = questionProgress.div(questions.size.toFloat()).plus(1.div(questions.size.toFloat())))
         }
     }
+}
 
 
 @Composable
