@@ -25,7 +25,7 @@
     {
       "id": 3,
       "label": "How many WHeat do you need to craft a cake?",
-      "correct_answer_id": 1,
+      "correct_answer_id": 3,
       "answers": [
         {"id": 1, "label": "1"},
         {"id": 2, "label": "2"},
