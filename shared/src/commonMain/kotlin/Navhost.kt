@@ -1,3 +1,7 @@
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.material.Slider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import moe.tlaster.precompose.navigation.NavHost
@@ -11,21 +15,24 @@ private val quizRepository = QuizRepository()
 @Composable
 internal fun rootNavHost() {
 
+    var navTransition = NavTransition(
+        createTransition = fadeIn(),
+    )
     val navigator = rememberNavigator()
     NavHost(
         navigator = navigator,
-        navTransition = NavTransition(),
+        navTransition = navTransition,
         initialRoute = "/welcome",
     ) {
         scene(
             route = "/welcome",
-            navTransition = NavTransition(),
+            navTransition = navTransition,
         ) {
             welcomeScreen(navigator)
         }
         scene(
             route = "/quiz",
-            navTransition = NavTransition(),
+            navTransition = navTransition,
         ) {
 
             val questions = quizRepository.questionState.collectAsState()
@@ -36,7 +43,7 @@ internal fun rootNavHost() {
         }
         scene(
             route = "/score/{score}",
-            navTransition = NavTransition(),
+            navTransition = navTransition,
         ) { backStackEntry ->
             backStackEntry.path<String>("score")?.let { score ->
                 scoreScreen(navigator, score)
