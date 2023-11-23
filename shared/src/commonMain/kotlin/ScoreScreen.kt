@@ -35,13 +35,9 @@ internal fun scoreScreen(navigator: Navigator, score: String){
         Card(
             shape = RoundedCornerShape(5.dp),
             modifier = Modifier.size(300.dp, 200.dp),
-            backgroundColor = Color(0xfffc28340)
+            backgroundColor = Color.Gray
         ) {
-            Image(
-                painter = painterResource("wall.png"),
-                contentDescription = "logo",
-                contentScale = ContentScale.Crop,
-            )
+            
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
 

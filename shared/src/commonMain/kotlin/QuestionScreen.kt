@@ -144,14 +144,10 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
             Card(
                 shape = RoundedCornerShape(5.dp),
                 modifier = Modifier.size(300.dp, 200.dp),
-                backgroundColor = Color(0xfffc28340)
+                backgroundColor = Color.Gray
             ) {
                 if (questionProgress != 2) {
-                    Image(
-                        painter = painterResource("wall.png"),
-                        contentDescription = "logo",
-                        contentScale = ContentScale.Crop,
-                    )
+
                     Column(modifier = Modifier.selectableGroup()) {
 
                         questions[questionProgress].answers.forEach { answer ->
@@ -214,7 +210,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                         }
                         if (questionProgress < questions.size - 1) {
                             questionProgress++
-                            selectedAnswer = 1
+                            selectedAnswer = 2
                         } else {
                             // Go to the score section
                             if (remainingTime > startTime / 1.5) {

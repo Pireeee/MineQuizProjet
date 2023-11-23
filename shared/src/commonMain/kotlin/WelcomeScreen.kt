@@ -40,13 +40,9 @@ internal fun welcomeScreen(navigator: Navigator) {
         Card(
             shape = RoundedCornerShape(8.dp),
             modifier = Modifier.padding(10.dp).size(200.dp),
+            backgroundColor = Color.Gray
         ) {
-            Image(
-                painter = painterResource("wall.png"),
-                contentDescription = "logo",
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop,
-            )
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
