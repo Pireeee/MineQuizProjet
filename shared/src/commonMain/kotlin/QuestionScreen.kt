@@ -10,6 +10,7 @@ import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.LinearProgressIndicator
 import androidx.compose.material.MaterialTheme
@@ -30,7 +31,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -83,7 +86,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 )
                 Text(text = "Time : $elapsedTime seconds")
                 Text(text = "Time remaining : $remainingTime seconds")
-                LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), color = Color.Green,progress=elapsedTime.div(startTime.toFloat()).plus(1.div(startTime.toFloat())))
+                LinearProgressIndicator(strokeCap = StrokeCap.Square,modifier = Modifier.fillMaxWidth().height(20.dp), color = Color.Green,progress=elapsedTime.div(startTime.toFloat()).plus(1.div(startTime.toFloat())))
             }
         }
         Column(modifier = Modifier.selectableGroup()) {
