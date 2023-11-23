@@ -1,5 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -58,7 +59,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
     var remainingTime by remember { mutableStateOf(startTime) }
     var bonus = 0;
     var totalScore = score;
-    var colorProgress by remember{ mutableStateOf(0xFff87ff00)};
+    var colorProgress by remember{ mutableStateOf(0xFff8fca5c)};
     scoreBox(score)
     LaunchedEffect(true) {
         launch {
@@ -67,7 +68,7 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
                 elapsedTime++
                 remainingTime--
                 if(remainingTime > startTime/1.5){
-                    colorProgress = 0xFff87ff00;
+                    colorProgress = 0xFff8fca5c;
                 }else if(remainingTime > startTime/2){
                     colorProgress = 0xFffffd100;
                 }else if(remainingTime > 0){
@@ -82,110 +83,135 @@ internal fun questionScreen(navigator: Navigator, questions: List<Question>) {
         }
     }
 
-    Column(
-        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Card(
-            shape = RoundedCornerShape(5.dp),
-            modifier = Modifier.padding(60.dp)
+    Box{
+        background("Background.png")
+        Column(
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(horizontal = 10.dp)
+            Card(
+                shape = RoundedCornerShape(5.dp),
+                modifier = Modifier.padding(60.dp)
             ) {
-                Text(
-                    modifier = Modifier.padding(all = 10.dp),
-                    text = questions[questionProgress].label,
-                    fontSize = 25.sp,
-                    textAlign = TextAlign.Center
-                )
-                Text(text = "Time : $elapsedTime seconds")
-                Text(text = "Time remaining : $remainingTime seconds")
-                LinearProgressIndicator(strokeCap = StrokeCap.Square,modifier = Modifier.fillMaxWidth().height(20.dp).rotate(
-                    180F
-                ).background(color = Color(0xFff08f112)), color = Color(colorProgress),progress=elapsedTime.div(startTime.toFloat()).plus(1.div(startTime.toFloat())))
-            }
-        }
-        Column(modifier = Modifier.selectableGroup()) {
-            if(questionProgress != 2){
-                questions[questionProgress].answers.forEach { answer ->
-                    Row(
-                        modifier = Modifier.padding(horizontal = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        RadioButton(
-                            modifier = Modifier.padding(end = 16.dp),
-                            selected = (selectedAnswer == answer.id),
-                            onClick = { selectedAnswer = answer.id },
-                        )
-                        Text(text = answer.label)
-
-                    }
-                }
-            }
-            else{
-                Row(
-
-                    modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    Text(text = selectedAnswer.toString())
-
-                    Slider(
-                        value = selectedAnswer.toFloat(),
-                        onValueChange = { selectedAnswer = it.roundToInt() },
-                        colors = SliderDefaults.colors(
-                            thumbColor = Color(0xff70b237),
-                            activeTrackColor = Color(0xff854f2b),
-                            inactiveTrackColor = Color(0xff8fca5c),
-                        ),
-                        steps = 2,
-                        valueRange = 1f..4f
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.padding(all = 10.dp),
+                        text = questions[questionProgress].label,
+                        fontSize = 25.sp,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(text = "Time : $elapsedTime seconds")
+                    Text(text = "Time remaining : $remainingTime seconds")
+                    LinearProgressIndicator(
+                        strokeCap = StrokeCap.Square,
+                        modifier = Modifier.fillMaxWidth().height(20.dp).rotate(
+                            180F
+                        ).background(color = Color(0xfff477a1e)),
+                        color = Color(colorProgress),
+                        progress = elapsedTime.div(startTime.toFloat())
+                            .plus(1.div(startTime.toFloat()))
                     )
                 }
             }
-        }
+            Card(
+                shape = RoundedCornerShape(5.dp),
+            ) {
+                Column(modifier = Modifier.selectableGroup()) {
+                    if (questionProgress != 2) {
+                        questions[questionProgress].answers.forEach { answer ->
+                            Row(
+                                modifier = Modifier.padding(horizontal = 16.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                RadioButton(
+                                    modifier = Modifier.padding(end = 16.dp),
+                                    selected = (selectedAnswer == answer.id),
+                                    onClick = { selectedAnswer = answer.id },
+                                )
+                                Text(text = answer.label)
 
-
-        Column(modifier = Modifier.fillMaxHeight(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Bottom) {
-            Button(
-                modifier = Modifier.padding(bottom = 20.dp),
-                colors = buttonColors(
-                    Color(0xff70b237),
-                    Color(0xff854f2b),
-                    Color(0xff8fca5c),
-                    Color(0xff854f2b)),
-                onClick = {
-
-                    if(selectedAnswer == questions[questionProgress].correctAnswerId) {
-                        score++
-                    }
-                    if (questionProgress < questions.size - 1) {
-                        questionProgress++
-                        selectedAnswer = 1
-                    }else{
-                        // Go to the score section
-                        if(remainingTime > startTime/1.5){
-                            bonus = 2
-                            totalScore = score + bonus
-                        }else if(remainingTime > startTime/2){
-                            bonus++
-                            totalScore += bonus
+                            }
                         }
+                    } else {
+                        Row(
 
-                        navigator.navigate("/score/$score out of ${questions.size} \n" +
-                                "Time : $elapsedTime \n" +
-                                "Bonus added to your score : $bonus \n" +
-                                "Total score : $totalScore")
+                            modifier = Modifier.padding(horizontal = 16.dp).width(300.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(text = selectedAnswer.toString())
+
+                            Slider(
+                                value = selectedAnswer.toFloat(),
+                                onValueChange = { selectedAnswer = it.roundToInt() },
+                                colors = SliderDefaults.colors(
+                                    thumbColor = Color(0xff70b237),
+                                    activeTrackColor = Color(0xff854f2b),
+                                    inactiveTrackColor = Color(0xff8fca5c),
+                                ),
+                                steps = 2,
+                                valueRange = 1f..4f
+                            )
+                        }
                     }
                 }
-            ) {
-                if(questionProgress < questions.size - 1) nextOrDoneButton(Icons.Filled.ArrowForward,"Next")
-                else nextOrDoneButton(Icons.Filled.Done,"Done")
             }
-            LinearProgressIndicator(modifier = Modifier.fillMaxWidth().height(20.dp), progress = questionProgress.div(questions.size.toFloat()).plus(1.div(questions.size.toFloat())))
+
+            Column(
+                modifier = Modifier.fillMaxHeight(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom
+            ) {
+                Button(
+                    modifier = Modifier.padding(bottom = 20.dp),
+                    colors = buttonColors(
+                        Color(0xff70b237),
+                        Color(0xff854f2b),
+                        Color(0xff8fca5c),
+                        Color(0xff854f2b)
+                    ),
+                    onClick = {
+
+                        if (selectedAnswer == questions[questionProgress].correctAnswerId) {
+                            score++
+                        }
+                        if (questionProgress < questions.size - 1) {
+                            questionProgress++
+                            selectedAnswer = 1
+                        } else {
+                            // Go to the score section
+                            if (remainingTime > startTime / 1.5) {
+                                bonus = 2
+                                totalScore = score + bonus
+                            } else if (remainingTime > startTime / 2) {
+                                bonus++
+                                totalScore += bonus
+                            }
+
+                            navigator.navigate(
+                                "/score/$score out of ${questions.size} \n" +
+                                        "Time : $elapsedTime \n" +
+                                        "Bonus added to your score : $bonus \n" +
+                                        "Total score : $totalScore"
+                            )
+                        }
+                    }
+                ) {
+                    if (questionProgress < questions.size - 1) nextOrDoneButton(
+                        Icons.Filled.ArrowForward,
+                        "Next"
+                    )
+                    else nextOrDoneButton(Icons.Filled.Done, "Done")
+                }
+                LinearProgressIndicator(
+                    modifier = Modifier.fillMaxWidth().height(20.dp),
+                    progress = questionProgress.div(questions.size.toFloat())
+                        .plus(1.div(questions.size.toFloat()))
+                )
+            }
         }
     }
 }

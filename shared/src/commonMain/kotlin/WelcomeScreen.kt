@@ -41,8 +41,8 @@ internal fun welcomeScreen(navigator: Navigator) {
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                        
                         Text(
                             text = "Quiz",
                             fontSize = 30.sp,
@@ -64,3 +64,5 @@ internal fun welcomeScreen(navigator: Navigator) {
         }
     }
 }
+
+
